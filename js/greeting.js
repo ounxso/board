@@ -1,6 +1,7 @@
 const loginForm = document.querySelector('#login-form');
 const loginInput = document.querySelector('#login-form input');
 const greeting = document.querySelector('#greeting');
+const logoutButton = document.querySelector('#logout-button');
 
 const HIDDEN_CLASSNAME = 'hidden';
 const USERNAME_KEY = 'username';
@@ -18,11 +19,19 @@ function paintGreetings(username) {
 
   const smileImage = ['img/smile.png'];
 
-  greeting.innerHTML = `Hello, ${username}<img src="${smileImage}" style="width: 50px; height: auto; margin-left: 20px;">`;
+  greeting.innerHTML = `<div style="margin-left: 20px; margin-top:50px">Hello, ${username} <img src="${smileImage}" style="width: 50px; height: auto; margin-left: 10px;"></div>`;
   greeting.classList.remove(HIDDEN_CLASSNAME);
   greeting.style.textAlign = 'center';
   greeting.style.lineHeight = '120px';
   greeting.style.height = '100px';
+  logoutButton.classList.remove(HIDDEN_CLASSNAME);
+}
+
+function handleLogout() {
+  localStorage.removeItem(USERNAME_KEY); // 로컬 스토리지에서 사용자 이름 삭제
+  greeting.classList.add(HIDDEN_CLASSNAME); // 인사말 숨기기
+  loginForm.classList.remove(HIDDEN_CLASSNAME); // 로그인 폼 표시
+  logoutButton.classList.add(HIDDEN_CLASSNAME); // 로그아웃 버튼 숨기기
 }
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
@@ -35,3 +44,5 @@ if (savedUsername === null) {
   // show the greetings
   paintGreetings(savedUsername);
 }
+
+logoutButton.addEventListener('click', handleLogout);
