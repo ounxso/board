@@ -19,7 +19,7 @@ function paintGreetings(username) {
 
   const smileImage = ['img/smile.png'];
 
-  greeting.innerHTML = `<div style="margin-left: 20px; margin-top:50px">Hello, ${username} <img src="${smileImage}" style="width: 50px; height: auto; margin-left: 10px;"></div>`;
+  greeting.innerHTML = `<div style="margin-left: 15px; margin-top:50px">Hello, ${username} <img src="${smileImage}" style="width: 50px; height: auto; margin-left: 10px;"></div>`;
   greeting.classList.remove(HIDDEN_CLASSNAME);
   greeting.style.textAlign = 'center';
   greeting.style.lineHeight = '120px';
